@@ -1,8 +1,21 @@
 <template>
-    <section class="text-center py-20 bg-green-100">
-        <h2 class="text-4xl font-bold mb-4">Экологичный Дубай: Путешествуй осознанно</h2>
-        <p class="text-lg mb-6">Откройте для себя эко-отели, эко-туризм и устойчивый образ жизни</p>
-        <button class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Скачать гид по
-            эко-отелям</button>
+    <section 
+        class="text-center py-20 mt-8 bg-cover bg-center" 
+        style="background-image: url('/arid-1866541.jpg');"
+    >
+      <div class="bg-black bg-opacity-40 py-20">
+        <h2 class="text-4xl font-bold mb-4 text-white">Экологичный Дубай: Путешествуй осознанно</h2>
+        <p class="text-lg mb-6 text-green-100">Откройте для себя эко-отели, эко-туризм и устойчивый образ жизни</p>
+      </div>
     </section>
 </template>
+
+<script>
+export default {
+  name: 'BannerSection'
+}
+</script>
+
+<style scoped>
+/* Дополнительные стили при необходимости */
+</style>

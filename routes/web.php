@@ -24,4 +24,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/privacy-policy', function () {
+    return Inertia::render('Footer/PrivacyPolicy');
+})->name('privacy-policy');
+
+Route::get('/contact', function () {
+    return Inertia::render('Footer/Contact');
+})->name('contact');
+
+
+
 require __DIR__.'/auth.php';
