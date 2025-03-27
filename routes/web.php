@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,6 +32,18 @@ Route::get('/privacy-policy', function () {
 Route::get('/contact', function () {
     return Inertia::render('Footer/Contact');
 })->name('contact');
+
+
+Route::post('/change-locale', function (Request $request) {
+    $validLocales = ['en', 'ru', 'ar'];
+    
+    if (in_array($request->locale, $validLocales)) {
+        session(['locale' => $request->locale]);
+        return response()->json(['success' => true]);
+    }
+    
+    return response()->json(['success' => false], 400);
+})->middleware('web');
 
 
 
