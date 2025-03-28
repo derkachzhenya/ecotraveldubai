@@ -12,20 +12,18 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) =>
-        resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+        resolvePageComponent(
+            `./Pages/${name}.vue`,
+            import.meta.glob('./Pages/**/*.vue'),
+        ),
     setup({ el, App, props, plugin }) {
         const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
             .use(i18nVue, {
-                lang: localStorage.getItem('lang') || 'en', // Загружаем язык из локального хранилища
-                resolve: async (lang) => {
+                resolve: async lang => {
                     const langs = import.meta.glob('../../lang/*.json');
-                    if (langs[`../../lang/${lang}.json`]) {
-                        return langs[`../../lang/${lang}.json`]();
-                    }
-                    console.warn(`⚠️ Переводы для языка "${lang}" не найдены.`);
-                    return {};
+                    return await langs[`../../lang/${lang}.json`]();
                 }
             });
 

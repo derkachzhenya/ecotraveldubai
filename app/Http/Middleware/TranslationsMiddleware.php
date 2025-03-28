@@ -13,12 +13,16 @@ class TranslationsMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        app()->setLocale(config('app.locale'));
-        if (session()->has('locale')) {
-            app()->setLocale(session('locale'));
-        }
-        return $next($request);
+  public function handle(Request $request, Closure $next): Response
+{
+    // Устанавливаем язык по умолчанию
+    app()->setLocale(config('app.locale'));
+    
+    // Если в сессии есть язык, используем его
+    if (session()->has('locale')) {
+        app()->setLocale(session('locale'));
     }
+    
+    return $next($request);
+}
 }
